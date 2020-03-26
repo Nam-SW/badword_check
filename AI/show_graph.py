@@ -8,6 +8,8 @@ good = pd.read_excel('./dataset/goodword.xlsx', encoding='utf-8-sig')
 print(len(bad), len(good))
 
 df = pd.concat([bad, good])
+print(len(df))
+
 df.dropna(how='any', inplace=True)
 print(len(df))
 
