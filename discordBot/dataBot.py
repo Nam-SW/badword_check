@@ -1,6 +1,7 @@
 import discord
 import pandas as pd
 from tensorflow.keras.models import load_model
+from random import randint
 import os
 
 from utils.text import len_encode
@@ -33,14 +34,26 @@ async def on_message(message):
 
     if message.content:
         content = message.content
-        if user_id == '426330292719058944' and content == '!수집':
-            df = pd.DataFrame(datadict)
-            path = os.path.join(base_url, 'data.xlsx')
-            df.to_excel(path, index=None, encoding='utf-8-sig')
-            await message.author.send(file=discord.File(path))
-            os.remove(path)
-            dict_reset()
+        if user_id == '426330292719058944' and content in ['!수집', '!현황', '!샘플']:
+            if content == '!수집':
+                df = pd.DataFrame(datadict)
+                path = os.path.join(base_url, 'data.xlsx')
+                df.to_excel(path, index=None, encoding='utf-8-sig')
+                await message.author.send(file=discord.File(path))
+                os.remove(path)
+                dict_reset()
+            
+            elif content == '!현황':
+                count = len(datadict['data'])
+                await message.author.send(f'현재 쌓인 데이터: {count}')
+            
+            elif content == '!샘플':
+                rd = randint(0, len(datadict['data']) - 1)
+                x = datadict['data'][rd]
+                y = datadict['pred'][rd]
+                await message.author.send(f'샘플\ndata = {x}\npredict = {y}')
 
+        
         else:
             data = len_encode(content, 100)
             pred = model.predict(data)[0, 0]
