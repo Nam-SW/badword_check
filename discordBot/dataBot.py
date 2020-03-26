@@ -34,7 +34,10 @@ async def on_message(message):
 
     if message.content:
         content = message.content
-        if user_id == '426330292719058944' and content in ['!수집', '!현황', '!샘플']:
+        if content.startswith('<'): # 이모지, 멘션 등은 무시
+            return
+
+        if user_id == '426330292719058944' and content.startswith('!'):
             if content == '!수집':
                 df = pd.DataFrame(datadict)
                 path = os.path.join(base_url, 'data.xlsx')
@@ -47,11 +50,18 @@ async def on_message(message):
                 count = len(datadict['data'])
                 await message.author.send(f'현재 쌓인 데이터: {count}')
             
-            elif content == '!샘플':
-                rd = randint(0, len(datadict['data']) - 1)
-                x = datadict['data'][rd]
-                y = datadict['pred'][rd]
-                await message.author.send(f'샘플\ndata = {x}\npredict = {y}')
+            elif content.startswith('!샘플'):
+                commands = content.split()
+                if len(commands) == 1:
+                    count = 1
+                else:
+                    count = int(commands[1])
+
+                for _ in range(count):
+                    rd = randint(0, len(datadict['data']) - 1)
+                    x = datadict['data'][rd]
+                    y = datadict['pred'][rd]
+                    await message.author.send(f'data = {x}\npredict = {y}')
 
         
         else:
