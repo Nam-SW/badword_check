@@ -15,7 +15,7 @@ encoding_dict = defaultdict(lambda : 0, {k:code+1 for code, k in enumerate(link_
 
 
 def encode(text):
-    text = decompose(text).replace('ᴥ', '')
+    text = decompose(str(text)).replace('ᴥ', '')
     code = [encoding_dict[t] for t in text]
     return code
 
@@ -29,11 +29,9 @@ def len_encode(text, maxlen):
     data_list = []
     for t in text:
         if len(t) > maxlen:
-            # nplist = np.array(t[:maxlen])
             data_list.append(np.array(t[:maxlen]))
         else:
-            t = [0] * (maxlen - len(t)) + t
-            # nplist = np.array(t)
+            t += [0] * (maxlen - len(t))
             data_list.append(np.array(t))
     
     return np.array(data_list)

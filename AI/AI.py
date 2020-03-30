@@ -9,6 +9,7 @@ from utils import text
 base_url = os.getcwd()
 df = pd.read_excel(os.path.join(base_url, 'AI/dataset/dataset.xlsx'), encoding='utf-8-sig')
 df.dropna(how='any', inplace=True)
+df.to_excel(os.path.join(base_url, 'AI/dataset/dataset.xlsx'), encoding='utf-8-sig', index=None)
 model = load_model(os.path.join(base_url, 'AI/model.h5'))
 
 
