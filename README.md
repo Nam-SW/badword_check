@@ -23,10 +23,12 @@ print(model.predict(data))
 
 ## 참고자료
 + [[NDC] 딥러닝으로 욕설 탐지하기][욕설탐지]
++ [Notion 프로젝트 정리 페이지][notion]
 
 ## 참고사항
 현재 본 프로젝트는 **진행중**입니다! 아직 모델이 걸러낼 수 없는 말들이 다수 존재합니다.
 만약 라이브러리에 오류가 있거나 모델이 잘못 예측하는 경우엔 이슈나 [메일][Gmail]로 연락 주시면 감사하겠습니다.
 
 [욕설탐지]: https://www.youtube.com/watch?v=K4nU7yXy7R8
+[notion]: https://www.notion.so/namseungwoo/ec7f5e9006934142bc7fbf633e6c541f
 [Gmail]: https://gmail.com/
