@@ -30,5 +30,5 @@ print(model.predict(data))
 만약 라이브러리에 오류가 있거나 모델이 잘못 예측하는 경우엔 이슈나 [메일][Gmail]로 연락 주시면 감사하겠습니다.
 
 [욕설탐지]: https://www.youtube.com/watch?v=K4nU7yXy7R8
-[notion]: https://www.notion.so/namseungwoo/ec7f5e9006934142bc7fbf633e6c541f
+[notion]: https://www.notion.so/namseungwoo/1c380d64fd374b8fb54b08c6a0be1440
 [Gmail]: https://gmail.com/
